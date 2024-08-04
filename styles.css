@@ -62,6 +62,10 @@ section {
     animation: fadeIn 2s forwards;
 }
 
+section h2 {
+    margin-bottom: 10px;
+}
+
 footer {
     background: #333;
     color: #fff;
