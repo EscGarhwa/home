@@ -9,6 +9,7 @@ body {
     line-height: 1.6;
     background-color: #f4f4f4;
     color: #333;
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -21,44 +22,52 @@ header {
     background: #333;
     color: #fff;
     padding: 20px 0;
-    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .logo {
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 10px;
-    animation: float 2s infinite;
+    font-size: 1.5em;
 }
 
 header nav ul {
     list-style: none;
-    text-align: center;
-    opacity: 0;
-    animation: slideIn 1s forwards;
-    animation-delay: 1s;
+    display: flex;
 }
 
 header nav ul li {
-    display: inline;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 header nav ul li a {
     color: #fff;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 header nav ul li a:hover {
-    text-decoration: underline;
+    color: #4CAF50;
+}
+
+.section {
+    padding: 100px 0;
+    text-align: center;
+    margin-top: 70px;
 }
 
 #home {
-    background: #4CAF50;
+    background: url('banner.jpg') no-repeat center center/cover;
     color: #fff;
-    padding: 100px 0;
-    text-align: center;
-    animation: fadeIn 2s forwards;
+    padding: 200px 0;
 }
 
 .home-content h2 {
@@ -74,29 +83,15 @@ header nav ul li a:hover {
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #fff;
-    color: #333;
+    background: #4CAF50;
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s;
 }
 
 .btn:hover {
-    background: #e0e0e0;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-section p {
-    text-align: center;
-    margin-bottom: 20px;
+    background: #45a049;
 }
 
 .course-cards, .faculty-cards, .testimonial-cards {
@@ -113,6 +108,12 @@ section p {
     border-radius: 5px;
     flex: 1 1 calc(30% - 40px);
     max-width: calc(30% - 40px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 form {
@@ -150,33 +151,16 @@ footer {
     padding: 10px 0;
 }
 
-/* Keyframes for animations */
-@keyframes float {
-    0%, 100% {
+.animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
         transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
     }
 }
 
@@ -187,22 +171,13 @@ footer {
         padding: 10px;
     }
 
-    header nav ul li {
-        display: block;
-        margin-bottom: 10px;
-    }
-
     header nav ul {
-        opacity: 1;
-        animation: none;
+        flex-direction: column;
+        align-items: center;
     }
 
-    header .logo {
-        animation: none;
-    }
-
-    #home {
-        animation: none;
+    header nav ul li {
+        margin-bottom: 10px;
     }
 
     .course-cards, .faculty-cards, .testimonial-cards {
